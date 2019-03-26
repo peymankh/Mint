@@ -32,15 +32,15 @@ struct SwiftPackage: Decodable {
 
     struct Product: Decodable {
         let name: String
-        let type: String
+        let type: [String: String?]
 
         enum CodingKeys: String, CodingKey {
             case name
-            case type = "product_type"
+            case type
         }
 
         var isExecutable: Bool {
-            return type == "executable"
+            return type.keys.contains("executable")
         }
     }
 }
